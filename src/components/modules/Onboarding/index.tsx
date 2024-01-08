@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import Color from 'color';
 import { useWindowDimensions } from 'react-native';
 import Animated, {
   useAnimatedRef,
@@ -18,25 +17,25 @@ const data = [
     title: 'Count activities',
     description: 'Every time you eat fries, take a poo or anything else, count it!',
     color: '#265D9E',
-    image: require('../../../assets/images/onboarding/02.jpg'),
+    // image: require('../../../assets/images/onboarding/02.jpg'),
   },
   {
     title: 'Track habits',
     description: 'Dialy, weekly or monthly habits, track it!',
     color: '#4E8DC5',
-    image: require('../../../assets/images/onboarding/01.jpg'),
+    // image: require('../../../assets/images/onboarding/01.jpg'),
   },
   {
     title: 'Privacy first',
     description: 'Your data is yours, everything local, we do not share it with anyone.',
     color: '#7BB2E9',
-    image: require('../../../assets/images/onboarding/03.jpg'),
+    // image: require('../../../assets/images/onboarding/03.jpg'),
   },
   {
     title: 'Start now',
     description: 'Create your first counter or habit tracker.',
     color: '#A1CAE8',
-    image: require('../../../assets/images/onboarding/04.jpg'),
+    // image: require('../../../assets/images/onboarding/04.jpg'),
   },
 ];
 
@@ -57,11 +56,11 @@ export function Onboarding() {
   const colors = useMemo(() => data.map(({ color }) => color), [data]);
 
   // Darkening the colors for gradient effect
-  const darkenColors = useMemo(() => {
-    return data.map(({ color }) => {
-      return Color(color).darken(0.8).hex();
-    });
-  }, [data]);
+  // const darkenColors = useMemo(() => {
+  //   return data.map(({ color }) => {
+  //     return Color(color).darken(0.8).hex();
+  //   });
+  // }, [data]);
 
   // Handler to update currentOffset on scroll
   const onScroll = useAnimatedScrollHandler({
@@ -122,5 +121,5 @@ type ColorListItemType = {
   title: string;
   description: string;
   color: string;
-  image: ReturnType<typeof require>;
+  image?: ReturnType<typeof require>;
 };
