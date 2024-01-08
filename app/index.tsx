@@ -5,7 +5,6 @@ import { MapView } from 'modules/MapView';
 export default function HomeScreen() {
   return (
     <>
-      <StatusBar style="dark" />
       <MapView />
     </>
   );

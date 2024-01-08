@@ -1,12 +1,13 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import {
   Inter_400Regular,
   Inter_500Medium,
   Inter_800ExtraBold,
   useFonts,
 } from '@expo-google-fonts/inter';
+import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { SplashScreen, Stack } from 'expo-router';
+import { SplashScreen, Stack, Tabs } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -14,6 +15,7 @@ import { ThemeProvider } from 'styled-components/native';
 
 import theme from 'styles/theme';
 import { ToastProvider } from 'common/interaction';
+import { BottomTabBar } from 'modules/BottomBar/components/bottom-tab-bar';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -28,6 +30,10 @@ const queryClient = new QueryClient({
 });
 
 export default function AppLayout() {
+  const tabBar = useCallback((props: BottomTabBarProps) => {
+    return <BottomTabBar {...props} />;
+  }, []);
+
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_500Medium,
@@ -49,9 +55,10 @@ export default function AppLayout() {
           <ToastProvider>
             <GestureHandlerRootView style={{ flex: 1 }}>
               <StatusBar style="dark" />
-              <Stack
+              <Tabs
                 initialRouteName="index"
                 screenOptions={{ header: () => null }}
+                tabBar={tabBar}
               />
             </GestureHandlerRootView>
           </ToastProvider>
