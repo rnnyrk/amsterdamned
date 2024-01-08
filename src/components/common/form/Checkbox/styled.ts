@@ -2,7 +2,7 @@ import { Animated } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Label = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.Inter[400]};
+  font-family: ${({ theme }) => theme.fonts.Montserrat[400]};
   font-size: 14px;
   line-height: 20px;
   color: ${({ theme }) => theme.colors.black};

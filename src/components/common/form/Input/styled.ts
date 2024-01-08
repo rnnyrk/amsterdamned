@@ -5,7 +5,7 @@ export const StyledInput = styled.TextInput<InputProps>`
   width: 100%;
   min-width: 240px;
   padding: 16px;
-  font-family: ${({ theme }) => theme.fonts.Inter[400]};
+  font-family: ${({ theme }) => theme.fonts.Montserrat[400]};
   font-size: 20px;
   line-height: 26px;
   color: ${({ theme }) => theme.colors.black};

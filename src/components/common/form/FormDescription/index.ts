@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components/native';
 export const FormDescription = styled.Text<FormDescriptionProps>`
   width: 100%;
   margin: 4px 0 16px;
-  font-family: ${({ theme }) => theme.fonts.Inter[400]};
+  font-family: ${({ theme }) => theme.fonts.Montserrat[400]};
   font-size: 14px;
   color: ${({ theme }) => theme.colors.gray};
 

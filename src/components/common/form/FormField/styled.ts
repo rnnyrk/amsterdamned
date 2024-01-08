@@ -51,7 +51,7 @@ export const Label = styled(Animated.Text)`
   position: absolute;
   top: 30px;
   left: 16px;
-  font-family: ${({ theme }) => theme.fonts.Inter[400]};
+  font-family: ${({ theme }) => theme.fonts.Montserrat[400]};
   font-size: 14px;
   line-height: 16px;
   text-transform: uppercase;

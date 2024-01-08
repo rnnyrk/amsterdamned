@@ -5,7 +5,7 @@ export const ToggleContainer = styled.View`
 `;
 
 export const ToggleText = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.Inter[400]};
+  font-family: ${({ theme }) => theme.fonts.Montserrat[400]};
   font-size: 14px;
   line-height: 14px;
   text-transform: uppercase;

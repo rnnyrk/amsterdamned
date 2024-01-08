@@ -29,10 +29,10 @@ const theme = {
   },
 
   fonts: {
-    Inter: {
-      400: 'Inter_400Regular',
-      500: 'Inter_500Medium',
-      800: 'Inter_800ExtraBold',
+    Montserrat: {
+      400: 'Montserrat_400Regular',
+      500: 'Montserrat_500Medium',
+      800: 'Montserrat_800ExtraBold',
     },
   },
 } as const;
