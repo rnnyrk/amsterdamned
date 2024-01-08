@@ -45,6 +45,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   plugins: [
     ['expo-router'],
     [
+      '@rnmapbox/maps',
+      {
+        RNMapboxMapsDownloadToken: Env.MAPBOX_DOWNLOAD_TOKEN,
+      },
+    ],
+    [
       'app-icon-badge',
       {
         enabled: Env.APP_ENV === 'production' ? false : true,

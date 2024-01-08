@@ -66,11 +66,14 @@ const client = z.object({
 
   // ADD YOUR CLIENT ENV VARS HERE
   EAS_PROJECT_ID: z.string(),
+  MAPBOX_PUBLIC_KEY: z.string(),
 });
 
 const buildTime = z.object({
   // ADD YOUR BUILD TIME ENV VARS HERE
   EAS_PROJECT_ID: z.string(),
+  MAPBOX_PUBLIC_KEY: z.string(),
+  MAPBOX_DOWNLOAD_TOKEN: z.string(),
 });
 
 /**
@@ -87,6 +90,7 @@ const clientEnvVariables = {
 
   // ADD YOUR ENV VARS HERE TOO
   EAS_PROJECT_ID: process.env.EAS_PROJECT_ID,
+  MAPBOX_PUBLIC_KEY: process.env.MAPBOX_PUBLIC_KEY,
 };
 
 /**
@@ -95,6 +99,8 @@ const clientEnvVariables = {
 const buildTimeVariables = {
   // ADD YOUR ENV VARS HERE TOO
   EAS_PROJECT_ID: process.env.EAS_PROJECT_ID,
+  MAPBOX_PUBLIC_KEY: process.env.MAPBOX_PUBLIC_KEY,
+  MAPBOX_DOWNLOAD_TOKEN: process.env.MAPBOX_DOWNLOAD_TOKEN,
 };
 
 /**
