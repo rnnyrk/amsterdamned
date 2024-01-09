@@ -7,7 +7,7 @@ import {
 } from '@expo-google-fonts/montserrat';
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { SplashScreen, Stack, Tabs } from 'expo-router';
+import { SplashScreen, Tabs } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -54,7 +54,10 @@ export default function AppLayout() {
         <QueryClientProvider client={queryClient}>
           <ToastProvider>
             <GestureHandlerRootView style={{ flex: 1 }}>
-              <StatusBar style="dark" />
+              <StatusBar
+                style="dark"
+                backgroundColor={theme.colors.white}
+              />
               <Tabs
                 initialRouteName="index"
                 screenOptions={{ header: () => null }}

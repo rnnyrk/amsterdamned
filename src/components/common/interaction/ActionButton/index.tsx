@@ -67,7 +67,7 @@ export function ActionButton({
       disabled={isDisabled}
     >
       {({ pressed }) => {
-        let textColor: TextProps['color'] = 'primaryText';
+        let textColor: TextProps['color'] = 'black';
         if (isDisabled) {
           textColor = 'primary';
         }

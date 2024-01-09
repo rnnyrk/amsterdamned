@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { StackActions } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 import { Dimensions, Platform } from 'react-native';
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -24,21 +25,22 @@ const screens = [
   {
     name: 'Home',
     icon: 'map',
-    url: 'index',
+    url: '/',
   },
   {
     name: 'Favorites',
     icon: 'star',
-    url: 'favorites/index',
+    url: '/dashboard/favorites/',
   },
   {
     name: 'Settings',
     icon: 'settings',
-    url: 'settings/index',
+    url: '/dashboard/settings/',
   },
 ];
 
 export function BottomTabBar({ state, navigation }: BottomTabBarProps) {
+  const router = useRouter();
   const { bottom: safeBottom } = useSafeAreaInsets();
   const bottomBarSafeHeight = useSafeBottomBarHeight();
 
@@ -63,7 +65,8 @@ export function BottomTabBar({ state, navigation }: BottomTabBarProps) {
         return;
       }
 
-      navigation.navigate(nextScreen.url);
+      router.push(nextScreen.url as any);
+      // navigation.navigate(nextScreen.url);
       return;
     },
     [currentIndex, navigation],

@@ -2,10 +2,8 @@ import 'styled-components';
 
 const theme = {
   colors: {
-    primary: '#B6D4D3',
-    primaryHover: '#94d1cf',
-    primaryLight: '#e3fffe',
-    primaryText: '#1B3556',
+    primary: '#D82E20',
+    primaryLight: '#FB675B',
     black: '#1D191F',
     gray: '#CCCCCC',
     mediumGray: '#DDDDDD',

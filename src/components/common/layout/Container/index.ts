@@ -1,14 +1,16 @@
+import { EdgeInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 
 export const Container = styled.View<ContainerProps>`
-  width: 100%;
-  flex: 1;
-  align-items: ${({ alignItems }) => alignItems || 'center'};
-  justify-content: center;
-  padding: 0 24px;
+  flex: 2;
+  align-items: ${({ alignItems }) => alignItems || 'flex-start'};
   background-color: ${({ theme }) => theme.colors.white};
+  padding-top: ${({ top }) => top || 0}px;
+  padding-right: ${({ right }) => right || 0}px;
+  padding-bottom: ${({ bottom }) => bottom || 0}px;
+  padding-left: ${({ left }) => left || 0}px;
 `;
 
-type ContainerProps = {
+type ContainerProps = Partial<EdgeInsets> & {
   alignItems?: 'flex-start' | 'flex-end' | 'center';
 };
