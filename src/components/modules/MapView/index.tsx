@@ -10,7 +10,21 @@ export function MapView() {
 
   return (
     <View style={{ width, height }}>
-      <Mapbox.MapView style={{ flex: 1 }} />
+      <Mapbox.MapView
+        style={{ flex: 1 }}
+        logoEnabled={false}
+        rotateEnabled={false}
+        scaleBarEnabled={false}
+      >
+        <Mapbox.Camera
+          defaultSettings={{
+            centerCoordinate: [4.89707, 52.377956],
+            zoomLevel: 10,
+          }}
+          minZoomLevel={8}
+          maxZoomLevel={12}
+        />
+      </Mapbox.MapView>
     </View>
   );
 }
