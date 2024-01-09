@@ -1,4 +1,4 @@
-import { FieldError, RegisterOptions } from 'react-hook-form';
+import { RegisterOptions } from 'react-hook-form';
 import { TextInputProps } from 'react-native';
 
 export type FormFieldProps = {
@@ -8,7 +8,7 @@ export type FormFieldProps = {
   children?: React.ReactNode;
   isActive?: boolean;
   hasValue?: boolean;
-  error?: FieldError;
+  error?: any;
   marginTop?: string;
   marginBottom?: string;
   onPress?: () => void;
@@ -23,7 +23,7 @@ export type DefaultInputProps = Omit<Partial<TextInputProps>, 'style'> & {
   rules?: Exclude<RegisterOptions, 'valueAsNumber' | 'valueAsDate' | 'setValueAs'>;
   icon?: React.ReactNode;
   onIconClick?: ((event: any) => void) | undefined;
-  error?: FieldError;
+  error?: any;
 };
 
 export type CheckboxItemType = {
