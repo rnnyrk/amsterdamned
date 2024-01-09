@@ -15,7 +15,7 @@ import { ThemeProvider } from 'styled-components/native';
 
 import theme from 'styles/theme';
 import { ToastProvider } from 'common/interaction';
-import { BottomTabBar } from 'modules/BottomBar/components/bottom-tab-bar';
+import { BottomTabBar } from 'modules/BottomBar';
 
 SplashScreen.preventAutoHideAsync();
 

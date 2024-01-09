@@ -1,53 +1,103 @@
 import { useCallback } from 'react';
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { Tabs } from 'expo-router/tabs';
+import { StackActions } from '@react-navigation/native';
+import { Dimensions, Platform } from 'react-native';
+import { useSharedValue } from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { BottomTabBar } from './components/bottom-tab-bar';
+import { BOTTOM_BAR_HEIGHT, useSafeBottomBarHeight } from 'hooks/useSafeBottomBarHeight';
 
-export function BottomBar() {
-  const tabBar = useCallback((props: BottomTabBarProps) => {
-    return <BottomTabBar {...props} />;
-  }, []);
+import { TabBarItem } from './components/TabBarItem';
+import { BottomBarContainer, StyledBlurView, StyledGradient } from './styled';
+
+export const SCREEN_HEIGHT = Dimensions.get('window').height;
+export const IS_SMALL_DEVICE = SCREEN_HEIGHT < 700;
+
+export const LINEAR_GRADIENT_COLORS = [
+  'rgba(255,255,255,0)',
+  'rgba(0,0,0,0.1)',
+  'rgba(0,0,0,0.5)',
+  'rgba(0,0,0,0.8)',
+];
+
+const screens = [
+  {
+    name: 'Home',
+    icon: 'map',
+    url: 'index',
+  },
+  {
+    name: 'Favorites',
+    icon: 'star',
+    url: 'favorites/index',
+  },
+  {
+    name: 'Settings',
+    icon: 'settings',
+    url: 'settings/index',
+  },
+];
+
+export function BottomTabBar({ state, navigation }: BottomTabBarProps) {
+  const { bottom: safeBottom } = useSafeAreaInsets();
+  const bottomBarSafeHeight = useSafeBottomBarHeight();
+
+  const focusedIndex = useSharedValue(state.index);
+  const currentIndex = state.index;
+
+  const onTapIcon = useCallback(
+    (selectedIndex: number) => {
+      const nextScreen = screens[selectedIndex];
+      const isChangingRoute = currentIndex !== selectedIndex;
+
+      // Get the number of screens to pop if the selected screen is already focused
+      const popsAmount = navigation.getState().routes.find((item) => {
+        return item.name === nextScreen.name;
+      })?.state?.index;
+
+      // If not changing route and there are screens to pop, perform a pop action
+      if (!isChangingRoute && popsAmount !== 0 && Boolean(popsAmount)) {
+        const popAction = StackActions.pop(popsAmount);
+
+        navigation.dispatch(popAction);
+        return;
+      }
+
+      navigation.navigate(nextScreen.url);
+      return;
+    },
+    [currentIndex, navigation],
+  );
 
   return (
-    <Tabs
-      screenOptions={{
-        headerShown: false,
-      }}
-      tabBar={tabBar}
-    >
-      <Tabs.Screen
-        name="index"
-        options={{
-          href: '/',
-        }}
+    <>
+      <StyledGradient
+        pointerEvents="none"
+        colors={LINEAR_GRADIENT_COLORS}
+        height={bottomBarSafeHeight}
       />
-      <Tabs.Screen
-        name="dashboard"
-        options={{
-          href: '/dashboard',
-        }}
-      />
-    </Tabs>
-    // <BottomTab.Navigator
-    //   initialRouteName="Home"
-    //   screenOptions={{
-    //     headerShown: false,
-    //   }}
-    //   tabBar={tabBar}
-    // >
-    //   {ScreenNamesArray.map((key) => {
-    //     return (
-    //       <BottomTab.Screen
-    //         key={key}
-    //         name={key}
-    //         component={ScreenMap[key]}
-    //         options={{
-    //           freezeOnBlur: true,
-    //         }}
-    //       />
-    //     );
-    //   })}
-    // </BottomTab.Navigator>
+
+      <BottomBarContainer
+        bottom={safeBottom + 15}
+        height={BOTTOM_BAR_HEIGHT}
+      >
+        <StyledBlurView intensity={Platform.OS === 'android' ? 20 : 40}>
+          {screens.map((item, index) => {
+            return (
+              <TabBarItem
+                key={`${item.name}_${index}`}
+                icon={item.icon}
+                focusedIndex={focusedIndex}
+                index={index}
+                onPress={() => {
+                  onTapIcon(index);
+                  focusedIndex.value = index;
+                }}
+              />
+            );
+          })}
+        </StyledBlurView>
+      </BottomBarContainer>
+    </>
   );
 }

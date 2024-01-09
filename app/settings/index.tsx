@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Text } from 'common/typography';
 
-export default function DashboardScreen() {
+export default function FavoritesScreen() {
   const { top: safeTop, left: safeLeft, right: safeRight } = useSafeAreaInsets();
 
   return (
@@ -23,7 +23,7 @@ export default function DashboardScreen() {
           size={28}
           style={{ paddingLeft: 20 }}
         >
-          Dashboard
+          Settings
         </Text>
       </View>
     </>

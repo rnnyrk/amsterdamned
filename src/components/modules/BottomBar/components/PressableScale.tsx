@@ -1,6 +1,3 @@
-import type { PropsWithChildren } from 'react';
-import React from 'react';
-import type { StyleProp, ViewStyle } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   runOnJS,
@@ -9,21 +6,9 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-type PressableScaleProps = PropsWithChildren<{
-  onPress?: () => void;
-  style?: StyleProp<ViewStyle>;
-}>;
-
-// Create the PressableScale component
-const PressableScale: React.FC<PressableScaleProps> = ({
-  children,
-  onPress,
-  style,
-}) => {
-  // Create a shared value to track the press state
+export function PressableScale({ children, onPress }: PressableScaleProps) {
   const active = useSharedValue(false);
 
-  // Create a tap gesture handler
   const gesture = Gesture.Tap()
     .maxDuration(4000) // Set maximum duration for tap gesture
     .onTouchesDown(() => {
@@ -49,9 +34,16 @@ const PressableScale: React.FC<PressableScaleProps> = ({
 
   return (
     <GestureDetector gesture={gesture}>
-      <Animated.View style={[style, rAnimatedStyle]}>{children}</Animated.View>
+      <Animated.View
+        style={[{ flex: 1, justifyContent: 'center', alignItems: 'center' }, rAnimatedStyle]}
+      >
+        {children}
+      </Animated.View>
     </GestureDetector>
   );
-};
+}
 
-export { PressableScale };
+type PressableScaleProps = {
+  children: React.ReactNode;
+  onPress?: () => void;
+};
