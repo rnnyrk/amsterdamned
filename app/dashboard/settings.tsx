@@ -1,3 +1,4 @@
+import type * as i from 'types';
 import { Controller, useForm } from 'react-hook-form';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -9,14 +10,6 @@ import { Text } from 'common/typography';
 
 type NewAddressForm = {
   address: string;
-};
-
-type Feature = GeoJSON.Feature & {
-  id: string;
-  text_nl: string;
-  place_name_nl: string;
-  center: [lat: number, long: number];
-  address?: string;
 };
 
 export default function SettingsScreen() {
@@ -41,7 +34,7 @@ export default function SettingsScreen() {
       },
     )
       .then((response) => {
-        const [lat, long] = (response?.features as Feature[])[0].center;
+        const [lat, long] = (response?.features as i.LocationFeature[])[0].center;
         console.log({ lat, long });
       })
       .catch((error) => {

@@ -65,6 +65,8 @@ const client = z.object({
   BUILD_VERSION: z.number(),
 
   // ADD YOUR CLIENT ENV VARS HERE
+  SUPABASE_URL: z.string(),
+  SUPABASE_PUBLIC_KEY: z.string(),
   EAS_PROJECT_ID: z.string(),
   MAPBOX_PUBLIC_KEY: z.string(),
 });
@@ -88,7 +90,9 @@ const clientEnvVariables = {
   VERSION: packageJSON.version,
   BUILD_VERSION,
 
-  // ADD YOUR ENV VARS HERE TOO
+  // ADD YOUR CLIENT ENV VARS HERE
+  SUPABASE_URL: process.env.SUPABASE_URL,
+  SUPABASE_PUBLIC_KEY: process.env.SUPABASE_PUBLIC_KEY,
   EAS_PROJECT_ID: process.env.EAS_PROJECT_ID,
   MAPBOX_PUBLIC_KEY: process.env.MAPBOX_PUBLIC_KEY,
 };
@@ -97,7 +101,7 @@ const clientEnvVariables = {
  * @type {Record<keyof z.infer<typeof buildTime> , string | undefined>}
  */
 const buildTimeVariables = {
-  // ADD YOUR ENV VARS HERE TOO
+  // ADD YOUR BUILD TIME ENV VARS HERE
   EAS_PROJECT_ID: process.env.EAS_PROJECT_ID,
   MAPBOX_PUBLIC_KEY: process.env.MAPBOX_PUBLIC_KEY,
   MAPBOX_DOWNLOAD_TOKEN: process.env.MAPBOX_DOWNLOAD_TOKEN,
