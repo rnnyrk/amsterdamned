@@ -1,5 +1,12 @@
 import { Stack } from 'expo-router';
 
 export default function Layout() {
-  return <Stack screenOptions={{ header: () => null }} />;
+  return (
+    <Stack
+      screenOptions={{
+        header: () => null,
+        contentStyle: { backgroundColor: 'white' },
+      }}
+    />
+  );
 }

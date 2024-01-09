@@ -4,14 +4,13 @@ import { Container } from 'common/layout';
 import { Text } from 'common/typography';
 
 export default function FavoritesScreen() {
-  const { top, left, right } = useSafeAreaInsets();
+  const { top } = useSafeAreaInsets();
 
   return (
-    <Container {...{ right, left }}>
+    <Container top={top}>
       <Text
         size={28}
-        fontFamily={400}
-        style={{ paddingLeft: 24 }}
+        fontFamily={500}
       >
         Favorites
       </Text>

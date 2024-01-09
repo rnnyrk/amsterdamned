@@ -6,9 +6,9 @@ export const Container = styled.View<ContainerProps>`
   align-items: ${({ alignItems }) => alignItems || 'flex-start'};
   background-color: ${({ theme }) => theme.colors.white};
   padding-top: ${({ top }) => top || 0}px;
-  padding-right: ${({ right }) => right || 0}px;
+  padding-right: ${({ right }) => right || 24}px;
   padding-bottom: ${({ bottom }) => bottom || 0}px;
-  padding-left: ${({ left }) => left || 0}px;
+  padding-left: ${({ left }) => left || 24}px;
 `;
 
 type ContainerProps = Partial<EdgeInsets> & {

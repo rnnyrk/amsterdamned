@@ -1,5 +1,7 @@
-import { DotLoader } from '../../layout';
-import { ButtonContainer, ButtonIcon, ButtonLabel, ButtonWrapper } from './styled';
+import { DotLoader } from 'common/layout';
+import { Text } from 'common/typography';
+
+import { ButtonContainer, ButtonIcon, ButtonWrapper } from './styled';
 import { ButtonProps } from './types';
 
 export const Button = ({
@@ -47,7 +49,12 @@ export const Button = ({
                     {icon}
                   </ButtonIcon>
                 )}
-                <ButtonLabel variant={variant}>{children}</ButtonLabel>
+                <Text
+                  fontFamily={500}
+                  color="white"
+                >
+                  {children}
+                </Text>
               </>
             )}
           </ButtonWrapper>

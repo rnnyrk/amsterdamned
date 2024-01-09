@@ -1,20 +1,29 @@
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Button } from 'common/interaction';
 import { Container } from 'common/layout';
 import { Text } from 'common/typography';
 
 export default function SettingsScreen() {
-  const { top, left, right } = useSafeAreaInsets();
+  const { top } = useSafeAreaInsets();
+
+  function onNewLocation() {}
 
   return (
-    <Container {...{ right, left }}>
+    <Container top={top}>
       <Text
         size={28}
-        fontFamily={400}
-        style={{ paddingLeft: 24 }}
+        fontFamily={500}
       >
         Settings
       </Text>
+
+      <Button
+        onPress={onNewLocation}
+        style={{ marginTop: 16 }}
+      >
+        Nieuwe locatie aanmaken
+      </Button>
     </Container>
   );
 }

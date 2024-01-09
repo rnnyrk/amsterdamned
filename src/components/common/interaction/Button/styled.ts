@@ -23,7 +23,7 @@ export const ButtonIcon = styled.View<IconType>`
 
 export const ButtonContainer = styled.Pressable<ButtonContainerProps>`
   min-height: 48px;
-  width: 200px;
+  width: 100%;
 
   ${({ variant }) =>
     variant === 'social' &&
@@ -97,16 +97,5 @@ export const ButtonWrapper = styled.View<ButtonWrapperProps>`
     iconOnly &&
     css`
       width: 80px;
-    `}
-`;
-
-export const ButtonLabel = styled.Text<ButtonVariantsType>`
-  font-size: 16px;
-  color: ${({ theme }) => theme.colors.white};
-
-  ${({ variant, theme }) =>
-    variant === 'secondary' &&
-    css`
-      color: ${theme.colors.primary};
     `}
 `;
