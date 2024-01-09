@@ -17,7 +17,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   splash: {
     image: path.resolve(__dirname, 'src/assets/images/splash.png'),
     resizeMode: 'contain',
-    backgroundColor: '#B6D4D3',
+    backgroundColor: '#FFFFFF',
   },
   updates: {
     fallbackToCacheTimeout: 0,
