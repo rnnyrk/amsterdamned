@@ -10,8 +10,6 @@ export const BottomBarContainer = styled.View<BottomBarContainerProps>`
   z-index: 100;
   height: ${({ height }) => height}px;
   overflow: hidden;
-  /* border-width: 1px;
-  border-color: rgb(216, 216, 216); */
   border-radius: 100px;
   border-curve: continuous;
 `;
@@ -33,10 +31,15 @@ type StyledGradientProps = {
   height: number;
 };
 
-export const StyledBlurView = styled(BlurView)`
+export const StyledBlurView = styled(BlurView)<StyledBlurViewProps>`
   flex: 1;
   flex-direction: row;
   padding-left: 15px;
   padding-right: 15px;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: ${({ path }) =>
+    path !== '/' ? 'rgba(0, 0, 0, 0.3)' : 'rgba(255, 255, 255, 0.05)'};
 `;
+
+type StyledBlurViewProps = {
+  path: string;
+};

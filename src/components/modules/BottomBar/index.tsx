@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { StackActions } from '@react-navigation/native';
-import { useRouter } from 'expo-router';
+import { usePathname, useRouter } from 'expo-router';
 import { Dimensions, Platform } from 'react-native';
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -41,6 +41,7 @@ const screens = [
 
 export function BottomTabBar({ state, navigation }: BottomTabBarProps) {
   const router = useRouter();
+  const path = usePathname();
   const { bottom: safeBottom } = useSafeAreaInsets();
   const bottomBarSafeHeight = useSafeBottomBarHeight();
 
@@ -74,17 +75,22 @@ export function BottomTabBar({ state, navigation }: BottomTabBarProps) {
 
   return (
     <>
-      <StyledGradient
-        pointerEvents="none"
-        colors={LINEAR_GRADIENT_COLORS}
-        height={bottomBarSafeHeight}
-      />
+      {path === '/' && (
+        <StyledGradient
+          pointerEvents="none"
+          colors={LINEAR_GRADIENT_COLORS}
+          height={bottomBarSafeHeight}
+        />
+      )}
 
       <BottomBarContainer
         bottom={safeBottom + 15}
         height={BOTTOM_BAR_HEIGHT}
       >
-        <StyledBlurView intensity={Platform.OS === 'android' ? 20 : 40}>
+        <StyledBlurView
+          intensity={Platform.OS === 'android' ? 20 : 40}
+          path={path}
+        >
           {screens.map((item, index) => {
             return (
               <TabBarItem
